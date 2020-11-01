@@ -1,0 +1,44 @@
+extends base
+
+block contenido
+    main.container.mt-5
+        h1.text-center-mt-5 #{nombrePagina}
+        //p= JSON.stringify(listaTestimonios)
+        blockquote.text-center Nuestros clientes dicen
+        .row.testimoniales
+            each testimonio in listaTestimonios
+                .col-md-5.col-lg-4.mb-4
+                    .card
+                        .card-body 
+                            blockquote.blockquote
+                            p.mb-0
+                                | #{testimonio.comentarios}
+                            footer.blockquote-footer
+                                | #{testimonio.nombre}
+                
+        h3.d-block.w-100.text-center Agrega tu testimonio
+        .row.justify-content-center
+            .col-md-8
+                form(action="/testimoniales/", method="POST")
+                    .form-group
+                        label(for="nombre") Nombre
+                        input#nombre(type="text",placeholder="nombre", name="nombre", class="form-control", value=nombre)
+                    .form-group
+                        label(for="email") Correo electrónico
+                        input#nombre(type="text",placeholder="email", name="email", class="form-control", value=email)
+                    .form-group
+                        label(for="email") Comentarios
+                        textarea#comentarios(name="comentarios", class="form-control", cols="30", rows="10") #{comentarios}
+                    //p= JSON.stringify(errores)
+                    if(errores)
+                        each error in errores
+                            .alert.col.alert-danger.text-center=error.mensaje
+                    if(mensajes)
+                        each mensaje in mensajes
+                            .alert.col.alert-success.text-center=mensaje
+                    
+                    input.btn.btn-success.btn-block(type="submit")
+
+                    
+
+                        

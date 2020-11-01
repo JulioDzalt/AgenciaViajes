@@ -1,0 +1,47 @@
+extends base
+
+block slider
+    .slider 
+        h1 Rio de Janeiro
+        em aventura
+
+block contenido
+    main.container.mt-5
+        h2.text-center-mb Sobre nosotros
+        .row.mb-5
+            .col-md-6
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut lacinia massa, a sollicitudin lorem. Sed nec libero consequat, pulvinar erat a, vehicula enim. Nam orci elit, dictum eget odio a, bibendum sodales dolor. Nam malesuada interdum nunc, vel fringilla augue laoreet nec. Cras id lacus quis neque pulvinar consequat sed quis enim. Nullam justo ante, placerat et justo vel, posuere hendrerit dolor. Nullam laoreet consequat imperdiet. Aliquam laoreet, sapien et lacinia malesuada, metus nulla pellentesque tortor, id congue nunc magna ut neque. Fusce blandit dolor nec mi luctus malesuada. Aliquam sit amet ex iaculis, aliquet urna non, porttitor enim.
+                p Donec sodales urna ut accumsan sodales. Mauris eleifend odio ac ornare sollicitudin. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam semper, leo ut lacinia vestibulum, augue ex mollis sem, eget mollis leo tortor sit amet justo. Praesent consectetur velit sit amet posuere congue. Curabitur vulputate maximus porta. Aenean pulvinar ultricies nisl a vulputate. Etiam tempus erat ut urna ullamcorper aliquet. Nulla ullamcorper dictum enim, sit amet volutpat nulla.
+
+            .col-md-6
+                img(src="/img/inicio_nosotros.jpg", alt="nosotros", class="img-fluid")
+        h2.text-center-mb Algunos de nuestro viajes
+        .row.proximos-viajes
+            each viaje in listaViajes
+                .col-md-5.col-lg-4.mb-4
+                    .card
+                        img.card-img-top(src=`/img/destinos_${viaje.imagen}.jpg`, alt="")
+            
+                        .card-body
+                            //https://html-to-pug.com/
+                            //https://tablericons.com/
+                            h2 #{viaje.titulo}      
+                            p 
+                                svg.icon.icon-tabler.icon-tabler-calendar-event(xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewbox='0 0 24 24' stroke-width='1.5' stroke='#03A9F4' fill='none' stroke-linecap='round' stroke-linejoin='round')
+                                    path(stroke='none' d='M0 0h24v24H0z' fill='none')
+                                    rect(x='4' y='5' width='16' height='16' rx='2')
+                                    line(x1='16' y1='3' x2='16' y2='7')
+                                    line(x1='8' y1='3' x2='8' y2='7')
+                                    line(x1='4' y1='11' x2='20' y2='11')
+                                    rect(x='8' y='15' width='2' height='2')
+
+                                | #{viaje.fecha_ida} - #{viaje.fecha_vuelta}
+
+                            p Disponibles: #{viaje.disponibles}
+
+                            p= viaje.descripcion.substr(0,100) + "..."
+
+                            a(href=`viajes/${viaje.slug}`, class="btn btn-success btn-block") Más informacion
+                                
+        .row 
+            a(href=`viajes/`, class="btn btn-success btn-block") Ver todos los viajes
