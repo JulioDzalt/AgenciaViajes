@@ -12,11 +12,12 @@
   "author": "Julio Diaz",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
+    "pg": "^8.4.2",
     "pug": "^3.0.0",
-    "sequelize": "^6.3.5",
-    "dotenv": "^8.2.0"
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
