@@ -1,0 +1,662 @@
+#NODE y NPM
+#Verificar la verson de node
+    nvm current
+
+#Instalar una version actual
+    nvm install 14.15
+
+#Verificar que este disponible la noeva version
+    nvm list
+
+#Establecer por defecto la nueva version
+    nvm alias default 14.15
+
+#USar la version que queremso
+    nvm use 14.15
+
+#Creamos una carpeta donde esatra neustro proyecto
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize$ mkdir agenciaviajes
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize$ cd agenciaviajes/
+
+#Crear nuestro archivo package.jason con npm init
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm init
+    This utility will walk you through creating a package.json file.
+    It only covers the most common items, and tries to guess sensible defaults.
+    
+    See `npm help init` for definitive documentation on these fields
+    and exactly what they do.
+    
+    Use `npm install <pkg>` afterwards to install a package and
+    save it as a dependency in the package.json file.
+    
+    Press ^C at any time to quit.
+    package name: (agenciaviajes) 
+    version: (1.0.0) 
+    description: Priemer proyecto con Node.js
+    entry point: (index.js) 
+    test command: 
+    git repository: 
+    keywords: 
+    author: Julio Diaz
+    license: (ISC) 
+    About to write to /home/julio/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes/package.json:
+    
+    {
+      "name": "agenciaviajes",
+      "version": "1.0.0",
+      "description": "Priemer proyecto con Node.js",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "Julio Diaz",
+      "license": "ISC"
+    }
+
+#Isntalamos Nodemon (un wacther) que detecte lso cambios y compile
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm install --save-dev nodemon
+
+    > nodemon@2.0.6 postinstall /home/julio/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes/node_modules/nodemon
+    > node bin/postinstall || exit 0
+
+    Love nodemon? You can now support the project via the open collective:
+    > https://opencollective.com/nodemon/donate
+
+    npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.1.2 (node_modules/chokidar/node_modules/fsevents):
+    npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+    npm WARN agenciaviajes@1.0.0 No repository field.
+
+    + nodemon@2.0.6
+    added 117 packages from 53 contributors and audited 168 packages in 9.94s
+
+    10 packages are looking for funding
+    run `npm fund` for details
+
+    found 0 vulnerabilities
+
+
+#Instalado Express dede npm , como una depedecnia de produccion
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm install express
+    npm notice created a lockfile as package-lock.json. You should commit this file.
+    npm WARN agenciaviajes@1.0.0 No repository field.
+
+    + express@4.17.1
+    added 50 packages from 37 contributors and audited 50 packages in 4.182s
+    found 0 vulnerabilities
+
+#Agregamos un script a package.json
+    "dev": "nodemon index.js"
+
+
+
+#Ejecutamos
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm run dev
+
+    > agenciaviajes@1.0.0 dev /home/julio/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes
+    > nodemon index.js
+
+    [nodemon] 2.0.6
+    [nodemon] to restart at any time, enter `rs`
+    [nodemon] watching path(s): *.*
+    [nodemon] watching extensions: js,mjs,json
+    [nodemon] starting `node index.js`
+    El servidor esa funcionando en el puerto [undefined]
+
+
+#Para utilizar import express from "express", vamos a package.json
+    Colocamos   "type": "module",
+
+
+#Expres no tiene TempletEngine, no como Django que ya trae pila xd
+#Usualmente si el servidor tinee una API no se necesitaria el TempletEngine, ya que se suaurio Js, React, Agnular etc
+
+#En este proyecto se usura PUG, asi que lo instalamos
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm install pug
+    npm WARN agenciaviajes@1.0.0 No repository field.
+    npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.3 (node_modules/fsevents):
+    npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+    + pug@3.0.0
+    added 40 packages from 18 contributors and audited 208 packages in 8.815s
+
+    14 packages are looking for funding
+    run `npm fund` for details
+
+    found 0 vulnerabilities
+
+
+
+
+
+#Para improtal la base de datos, creamos la Bd desde MySQL y luego vamos a la ruta donde esta el .dump y ejecutamos
+    
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo$ sudo mysql
+    [sudo] password for julio: 
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 2
+    Server version: 5.7.32-0ubuntu0.18.04.1 (Ubuntu)
+
+    Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+    Oracle is a registered trademark of Oracle Corporation and/or its
+    affiliates. Other names may be trademarks of their respective
+    owners.
+
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+    mysql> create database agenciaviajes
+        -> ;
+    Query OK, 1 row affected (0.01 sec)
+
+
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ sudo mysql agenciaviajes < agenciaviajes.dump
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ sudo mysql
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 8
+    Server version: 5.7.32-0ubuntu0.18.04.1 (Ubuntu)
+
+    Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+    Oracle is a registered trademark of Oracle Corporation and/or its
+    affiliates. Other names may be trademarks of their respective
+    owners.
+
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+    mysql> use agenciaviajes;
+    Reading table information for completion of table and column names
+    You can turn off this feature to get a quicker startup with -A
+
+    Database changed
+    mysql> show tables;
+    +-------------------------+
+    | Tables_in_agenciaviajes |
+    +-------------------------+
+    | viajes                  |
+    +-------------------------+
+    1 row in set (0.00 sec)
+
+
+#Instalamos las dependecias de node para usar la BD de mysql, el ORM Sequelize
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso  Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm install mysql2 sequelize
+    npm WARN agenciaviajes@1.0.0 No repository field.
+    npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.3 (node_modules/fsevents):
+    npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+    + mysql2@2.2.5
+    + sequelize@6.3.5
+    added 30 packages from 97 contributors and audited 238 packages in 9.035s
+
+    14 packages are looking for funding
+    run `npm fund` for details
+
+    found 0 vulnerabilities
+
+
+
+#Creamsoa la tabal de testimonios
+
+
+CREATE TABLE IF NOT EXISTS Testimonios (
+  id int(11) NOT NULL AUTO_INCREMENT, 
+  nombre varchar(50) NOT NULL, 
+  email varchar(100) NOT NULL, 
+  comentarios text NOT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#Despliegue en Heroku
+#Instalamos dotenv para mnejar las variables de entorno
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm install --save-dev dotenv
+    npm WARN agenciaviajes@1.0.0 No repository field.
+    npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.3 (node_modules/fsevents):
+    npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+    + dotenv@8.2.0
+    added 1 package and audited 239 packages in 4.749s
+
+    14 packages are
+
+#Creamos el archivo variables.env y emepzamos a crear variables y pegarlas en el codigo de bd.js e index.js
+    //Creamos un puerto, que lotome de la variable de entorno o el 4000
+    const host = process.env.HOST || "0.0.0.0" //heroku se da cuenta y asigna una ip valida
+    const puerto = process.env.PORT || 4000 //Esta heroku la llena solito xd
+
+#El en package.json agregamos el script que utuilizara heroku ,port defecto es "npm start"
+    "start": "node index.js"
+
+#Porbamos el nuevo script
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso  Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm start
+
+    > agenciaviajes@1.0.0 start /home/julio/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes
+    > node index.js
+
+    (node:25539) [SEQUELIZE0004] DeprecationWarning: A boolean value was passed to options.operatorsAliases. This is a no-op with v5 and should be removed.
+    (Use `node --trace-deprecation ...` to show where the warning was created)
+    Example app listening at http://localhost:4000
+    Executing (default): SELECT 1+1 AS result
+    Base de datos conectada
+
+#Creamos nuestro repositoio de GIT
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git init
+    Initialized empty Git repository in /home/julio/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes/.git/
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ touch .gitignore
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git status
+    On branch master
+
+    No commits yet
+
+    Untracked files:
+    (use "git add <file>..." to include in what will be committed)
+
+            .gitignore
+            config/
+            controllers/
+            index.js
+            models/
+            package-lock.json
+            package.json
+            public/
+            routes/
+            views/
+
+    nothing added to commit but untracked files present (use "git add" to track)
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git add .
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git status
+    On branch master
+
+    No commits yet
+
+    Changes to be committed:
+    (use "git rm --cached <file>..." to unstage)
+
+            new file:   .gitignore
+            new file:   config/db.js
+            new file:   controllers/InicioControler.js
+            new file:   index.js
+            new file:   models/Testimonios.js
+            new file:   models/Viaje.js
+            new file:   package-lock.json
+            new file:   package.json
+            new file:   public/css/bootstrap.css
+            new file:   public/css/style.css
+            new file:   public/img/cupon.jpg
+            new file:   public/img/destinos_canada.jpg
+            new file:   public/img/destinos_canada_ln.jpg
+            new file:   public/img/destinos_grecia.jpg
+            new file:   public/img/destinos_grecia_ln.jpg
+            new file:   public/img/destinos_londres.jpg
+            new file:   public/img/destinos_londres_ln.jpg
+            new file:   public/img/destinos_paris.jpg
+            new file:   public/img/destinos_paris_ln.jpg
+            new file:   public/img/destinos_rio.jpg
+            new file:   public/img/destinos_rio_ln.jpg
+            new file:   public/img/destinos_roma.jpg
+            new file:   public/img/destinos_roma_ln.jpg
+            new file:   public/img/icono_calendario.svg
+            new file:   public/img/icono_destinos.svg
+            new file:   public/img/icono_disponibles.svg
+            new file:   public/img/icono_precio.svg
+            new file:   public/img/icono_precios.svg
+            new file:   public/img/icono_seguridad.svg
+            new file:   public/img/inicio_nosotros.jpg
+            new file:   public/img/logo.svg
+            new file:   public/img/nosotros.jpg
+            new file:   public/img/quote.jpg
+            new file:   public/img/superior.jpg
+            new file:   routes/index.js
+            new file:   views/base.pug
+            new file:   views/cabezera.pug
+            new file:   views/detalleViaje.pug
+            new file:   views/inicio.pug
+            new file:   views/nosotros.pug
+            new file:   views/piepagina.pug
+            new file:   views/testimoniales.pug
+            new file:   views/viajes.pug
+
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git commit -m "Primer commit"
+    [master (root-commit) 4e3877d] Primer commit
+    43 files changed, 2981 insertions(+)
+    create mode 100644 .gitignore
+    create mode 100644 config/db.js
+    create mode 100644 controllers/InicioControler.js
+    create mode 100644 index.js
+    create mode 100644 models/Testimonios.js
+    create mode 100644 models/Viaje.js
+    create mode 100644 package-lock.json
+    create mode 100644 package.json
+    create mode 100644 public/css/bootstrap.css
+    create mode 100644 public/css/style.css
+    create mode 100644 public/img/cupon.jpg
+    create mode 100644 public/img/destinos_canada.jpg
+    create mode 100644 public/img/destinos_canada_ln.jpg
+    create mode 100644 public/img/destinos_grecia.jpg
+    create mode 100644 public/img/destinos_grecia_ln.jpg
+    create mode 100644 public/img/destinos_londres.jpg
+    create mode 100644 public/img/destinos_londres_ln.jpg
+    create mode 100644 public/img/destinos_paris.jpg
+    create mode 100644 public/img/destinos_paris_ln.jpg
+    create mode 100644 public/img/destinos_rio.jpg
+    create mode 100644 public/img/destinos_rio_ln.jpg
+    create mode 100644 public/img/destinos_roma.jpg
+    create mode 100644 public/img/destinos_roma_ln.jpg
+    create mode 100644 public/img/icono_calendario.svg
+    create mode 100644 public/img/icono_destinos.svg
+    create mode 100644 public/img/icono_disponibles.svg
+    create mode 100644 public/img/icono_precio.svg
+    create mode 100644 public/img/icono_precios.svg
+    create mode 100644 public/img/icono_seguridad.svg
+    create mode 100644 public/img/inicio_nosotros.jpg
+    create mode 100644 public/img/logo.svg
+    create mode 100644 public/img/nosotros.jpg
+    create mode 100644 public/img/quote.jpg
+    create mode 100644 public/img/superior.jpg
+    create mode 100644 routes/index.js
+    create mode 100644 views/base.pug
+    create mode 100644 views/cabezera.pug
+    create mode 100644 views/detalleViaje.pug
+    create mode 100644 views/inicio.pug
+    create mode 100644 views/nosotros.pug
+    create mode 100644 views/piepagina.pug
+    create mode 100644 views/testimoniales.pug
+    create mode 100644 views/viajes.pug
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git remote add origin https://github.com/JulioDzalt/AgenciaViajes.git
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push -u origin mainerror: src refspec main does not match any.
+    error: failed to push some refs to 'https://github.com/JulioDzalt/AgenciaViajes.git'
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push origin master 
+    Counting objects: 53, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (49/49), done.
+    Writing objects: 100% (53/53), 2.27 MiB | 549.00 KiB/s, done.
+    Total 53 (delta 2), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (2/2), done.
+    To https://github.com/JulioDzalt/AgenciaViajes.git
+    * [new branch]      master -> m
+
+
+#Creamso nuestra app de heroku
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku create --remote production
+    Creating app... done, ⬢ bloodcurdling-vampire-47944
+    https://bloodcurdling-vampire-47944.herokuapp.com/ | https://git.heroku.com/bloodcurdling-vampire-47944.git
+    
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push production master 
+    Counting objects: 53, done.
+
+#Listo esta arriba pero https://bloodcurdling-vampire-47944.herokuapp.com/ tinee errotes debido a las variables de entorno de la BD
+
+
+#Las Bd de mysql cuestan< asi que ocuparemos Postgres
+
+#Hacemos los cambios en db.js y subimos los cambios a git y heroku
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git add .
+julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git commit -m "Se agreggo el cambio para que se use PostgresSQL"
+[master d6c4065] Se agreggo el cambio para que se use PostgresSQL
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push origin master 
+julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push production master
+
+#Creamso al bd en heroku
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku addons:create cleardb:ignite
+    Creating cleardb:ignite on ⬢ bloodcurdling-vampire-47944... !
+    ▸    Please verify your account to install this add-on plan (please enter a
+    ▸    credit card) For more information, see
+    ▸    https://devcenter.heroku.com/categories/billing Verify now at
+    ▸    https://heroku.com/verify
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku addons:create heroku-postgresql:hobby-dev
+
+    Creating heroku-postgresql:hobby-dev on ⬢ bloodcurdling-vampire-47944... free
+    Database has been created and is available
+    ! This database is empty. If upgrading, you can transfer
+    ! data from another database with pg:copy
+    Created postgresql-clear-07236 as DATABASE_URL
+    Use heroku addons:docs heroku-postgresql to view documentation
+
+#Pedimos las credenciales desde el dashboard
+    Database Credentials
+    Get credentials for manual connections to this database.
+
+    Cancel
+    Please note that these credentials are not permanent.
+
+    Heroku rotates credentials periodically and updates applications where this database is attached.
+
+    Host ec2-34-231-56-78.compute-1.amazonaws.com
+    Database delvmcvhsvlceo
+    User vsrahdflfhspcb
+    Port 5432
+    Password 497f0d9a8947203a0f4e327ea6d522054ce82a884b26daf0035f26fc26185b73
+    URI postgres://vsrahdflfhspcb:497f0d9a8947203a0f4e327ea6d522054ce82a884b26daf0035f26fc26185b73@ec2-34-231-56-78.compute-1.amazonaws.com:5432/delvmcvhsvlceo
+
+
+#Migramos la BD a heroku! :v pero como si la original esta en MYSQL
+    Pues hacemos un dump desde la Bd local compatible con postgres: https://dba.stackexchange.com/questions/15769/how-to-convert-a-mysql-database-to-postgresql
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ sudo mysqldump --compatible=postgresql agenciaviajes > agenciaviajes_postgres.sql
+    [sudo] password for julio: 
+
+    #Nos coectamos a la BD de heroku desde la concola
+    #Antes tenemos que instalar el "psql" y posgres
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ sudo apt install postgresql-client-common
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku pg:psql postgresql-clear-07236 --app bloodcurdling-vampire-47944
+        --> Connecting to postgresql-clear-07236
+        Error: You must install at least one postgresql-client-<version> package
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ ^C
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ sudo apt-get install postgresql
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ psql
+        psql: FATAL:  role "julio" does not exist
+    #Crear un usuario
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ sudo psql -h localhost
+        Password: 
+        psql: fe_sendauth: no password supplied
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ sudo psql -h localhost
+        Password: 
+        psql: FATAL:  password authentication failed for user "root"
+        FATAL:  password authentication failed for user "root"
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ psql -h localhost
+        Password: 
+        psql: FATAL:  password authentication failed for user "julio"
+        FATAL:  password authentication failed for user "julio"
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ psql
+        psql (10.14 (Ubuntu 10.14-0ubuntu0.18.04.1))
+        Type "help" for help.
+    #Y ya funciona
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ psql
+    psql (10.14 (Ubuntu 10.14-0ubuntu0.18.04.1))
+    Type "help" for help.
+    
+    #Nos conectamos al la bd postgres de heroku
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku pg:psql
+        --> Connecting to postgresql-clear-07236
+        psql (10.14 (Ubuntu 10.14-0ubuntu0.18.04.1), server 12.4 (Ubuntu 12.4-1.pgdg16.04+1))
+        WARNING: psql major version 10, server major version 12.
+                Some psql features might not work.
+        SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
+        Type "help" for help.
+
+        bloodcurdling-vampire-47944::DATABASE=> 
+
+    #Aqui podriamos crear la BB y las tablas pero mejor la importamos
+    #SE INTENTO PERO NO funcionand  
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku pg:psql --app bloodcurdling-vampire-47944 < agenciaviajes_postgres.sql
+
+    #Mejor creamos las tablas
+    #Entramos al CLI de psql de heroku y metemos los Query
+        julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku pg:psql postgresql-clear-07236 --app bloodcurdling-vampire-47944
+    
+    #Creamos las tablas
+        CREATE TABLE Testimonios (
+            id serial NOT NULL PRIMARY KEY, 
+            nombre varchar(50) NOT NULL, 
+            email varchar(100) NOT NULL, 
+            comentarios text NOT NULL
+        );
+        CREATE TABLE viajes (
+            id int NOT NULL PRIMARY KEY,
+            titulo varchar(60) NOT NULL,
+            precio varchar(10) NOT NULL,
+            fecha_ida date NOT NULL,
+            fecha_vuelta date NOT NULL,
+            imagen varchar(15) NOT NULL,
+            descripcion text NOT NULL,
+            disponibles int NOT NULL,
+            slug varchar(20) NOT NULL
+        );
+    #Insertamos los datos
+        INSERT INTO viajes (id,titulo,precio,fecha_ida,fecha_vuelta,imagen,descripcion,disponibles,slug) VALUES 
+        (1,'Italia','50000','2021-06-24','2021-06-30','roma','Praesent tincidunt ante at justo semper volutpat. Sed risus neque, scelerisque id dictum in, placerat non erat. Sed eget tellus eu mauris faucibus pharetra. Praesent vulputate diam ac diam dignissim, eu semper turpis gravida. Vestibulum tempor purus orci, vitae ullamcorper erat congue quis. Nullam dapibus dui a velit lacinia, eu cursus massa cursus. Morbi lobortis fermentum urna, quis tincidunt justo varius vitae. In justo nisl, auctor vel eros sed, tempus efficitur lacus. Maecenas volutpat pharetra dolor, nec rutrum ipsum dapibus id.
+
+        Mauris ultricies augue lectus, efficitur tincidunt enim euismod non. Praesent nisl elit, eleifend et eleifend eu, venenatis et felis. Donec eleifend mi in congue semper. Quisque hendrerit purus eget pharetra laoreet. Donec nisl nisi, auctor at vehicula et, fermentum sed urna. In nec porta felis, eu ullamcorper lacus. Curabitur scelerisque commodo laoreet. Donec finibus vel nibh quis ultrices. Integer varius tellus sed leo tempor, vitae ullamcorper leo placerat.',32,'viaje-italia')
+        ,
+
+        (2,'Canada','60000','2021-07-19','2021-07-19','canada','Praesent tincidunt ante at justo semper volutpat. Sed risus neque, scelerisque id dictum in, placerat non erat. Sed eget tellus eu mauris faucibus pharetra. Praesent vulputate diam ac diam dignissim, eu semper turpis gravida. Vestibulum tempor purus orci, vitae ullamcorper erat congue quis. Nullam dapibus dui a velit lacinia, eu cursus massa cursus. Morbi lobortis fermentum urna, quis tincidunt justo varius vitae. In justo nisl, auctor vel eros sed, tempus efficitur lacus. Maecenas volutpat pharetra dolor, nec rutrum ipsum dapibus id.
+
+        Mauris ultricies augue lectus, efficitur tincidunt enim euismod non. Praesent nisl elit, eleifend et eleifend eu, venenatis et felis. Donec eleifend mi in congue semper. Quisque hendrerit purus eget pharetra laoreet. Donec nisl nisi, auctor at vehicula et, fermentum sed urna. In nec porta felis, eu ullamcorper lacus. Curabitur scelerisque commodo laoreet. Donec finibus vel nibh quis ultrices. Integer varius tellus sed leo tempor, vitae ullamcorper leo placerat.',25,'viaje-canada')
+        ,
+
+        (3,'Grecia','40000','2021-08-29','2021-09-15','grecia','Praesent tincidunt ante at justo semper volutpat. Sed risus neque, scelerisque id dictum in, placerat non erat. Sed eget tellus eu mauris faucibus pharetra. Praesent vulputate diam ac diam dignissim, eu semper turpis gravida. Vestibulum tempor purus orci, vitae ullamcorper erat congue quis. Nullam dapibus dui a velit lacinia, eu cursus massa cursus. Morbi lobortis fermentum urna, quis tincidunt justo varius vitae. In justo nisl, auctor vel eros sed, tempus efficitur lacus. Maecenas volutpat pharetra dolor, nec rutrum ipsum dapibus id.
+
+        Mauris ultricies augue lectus, efficitur tincidunt enim euismod non. Praesent nisl elit, eleifend et eleifend eu, venenatis et felis. Donec eleifend mi in congue semper. Quisque hendrerit purus eget pharetra laoreet. Donec nisl nisi, auctor at vehicula et, fermentum sed urna. In nec porta felis, eu ullamcorper lacus. Curabitur scelerisque commodo laoreet. Donec finibus vel nibh quis ultrices. Integer varius tellus sed leo tempor, vitae ullamcorper leo placerat.',18,'viaje-grecia')
+        ,
+
+        (4,'Inglaterra','8000','2021-09-22','2021-10-03','londres','Praesent tincidunt ante at justo semper volutpat. Sed risus neque, scelerisque id dictum in, placerat non erat. Sed eget tellus eu mauris faucibus pharetra. Praesent vulputate diam ac diam dignissim, eu semper turpis gravida. Vestibulum tempor purus orci, vitae ullamcorper erat congue quis. Nullam dapibus dui a velit lacinia, eu cursus massa cursus. Morbi lobortis fermentum urna, quis tincidunt justo varius vitae. In justo nisl, auctor vel eros sed, tempus efficitur lacus. Maecenas volutpat pharetra dolor, nec rutrum ipsum dapibus id.
+
+        Mauris ultricies augue lectus, efficitur tincidunt enim euismod non. Praesent nisl elit, eleifend et eleifend eu, venenatis et felis. Donec eleifend mi in congue semper. Quisque hendrerit purus eget pharetra laoreet. Donec nisl nisi, auctor at vehicula et, fermentum sed urna. In nec porta felis, eu ullamcorper lacus. Curabitur scelerisque commodo laoreet. Donec finibus vel nibh quis ultrices. Integer varius tellus sed leo tempor, vitae ullamcorper leo placerat.',22,'viaje-inglaterra')
+        ,
+
+        (5,'Rio de Janeiro','50000','2021-04-16','2021-04-25','rio','Praesent tincidunt ante at justo semper volutpat. Sed risus neque, scelerisque id dictum in, placerat non erat. Sed eget tellus eu mauris faucibus pharetra. Praesent vulputate diam ac diam dignissim, eu semper turpis gravida. Vestibulum tempor purus orci, vitae ullamcorper erat congue quis. Nullam dapibus dui a velit lacinia, eu cursus massa cursus. Morbi lobortis fermentum urna, quis tincidunt justo varius vitae. In justo nisl, auctor vel eros sed, tempus efficitur lacus. Maecenas volutpat pharetra dolor, nec rutrum ipsum dapibus id.
+
+        Mauris ultricies augue lectus, efficitur tincidunt enim euismod non. Praesent nisl elit, eleifend et eleifend eu, venenatis et felis. Donec eleifend mi in congue semper. Quisque hendrerit purus eget pharetra laoreet. Donec nisl nisi, auctor at vehicula et, fermentum sed urna. In nec porta felis, eu ullamcorper lacus. Curabitur scelerisque commodo laoreet. Donec finibus vel nibh quis ultrices. Integer varius tellus sed leo tempor, vitae ullamcorper leo placerat.',23,'viaje-rio-de-janeiro')
+        ,
+
+        (6,'Francia','75000','2021-04-03','2021-04-10','paris','Praesent tincidunt ante at justo semper volutpat. Sed risus neque, scelerisque id dictum in, placerat non erat. Sed eget tellus eu mauris faucibus pharetra. Praesent vulputate diam ac diam dignissim, eu semper turpis gravida. Vestibulum tempor purus orci, vitae ullamcorper erat congue quis. Nullam dapibus dui a velit lacinia, eu cursus massa cursus. Morbi lobortis fermentum urna, quis tincidunt justo varius vitae. In justo nisl, auctor vel eros sed, tempus efficitur lacus. Maecenas volutpat pharetra dolor, nec rutrum ipsum dapibus id.
+
+        Mauris ultricies augue lectus, efficitur tincidunt enim euismod non. Praesent nisl elit, eleifend et eleifend eu, venenatis et felis. Donec eleifend mi in congue semper. Quisque hendrerit purus eget pharetra laoreet. Donec nisl nisi, auctor at vehicula et, fermentum sed urna. In nec porta felis, eu ullamcorper lacus. Curabitur scelerisque commodo laoreet. Donec finibus vel nibh quis ultrices. Integer varius tellus sed leo tempor, vitae ullamcorper leo placerat.',14,'viaje-francia')
+        ;
+
+
+#Agregamos las variabels de entorno a heroku desde al terminal local
+    Database: delvmcvhsvlceo
+    User: vsrahdflfhspcb
+    Port: 5432
+    Password: 497f0d9a8947203a0f4e327ea6d522054ce82a884b26daf0035f26fc26185b73
+
+    $ heroku config:set DB_NOMBRE=delvmcvhsvlceo
+    $ heroku config:set DB_USER=vsrahdflfhspcb
+    $ heroku config:set DB_PASS=497f0d9a8947203a0f4e327ea6d522054ce82a884b26daf0035f26fc26185b73
+    $ heroku config:set DB_PORT=5432
+    $ heroku config:set DB_HOST=ec2-34-231-56-78.compute-1.amazonaws.com
+
+#Open ap y dveria de funcioanr, si no reiniciamos "los dino" y viendo el log dice que no encuentra "dotenv
+dotenv"
+    Y es correcto el pendejo lo istalo como "dev": npm install --save-dev dotenv
+    solo movemos en el package.json 
+        "dependencies": {
+            "dotenv": "^8.2.0"
+        },
+
+#Otro error nos falta la depedecnia "Error: Please install pg package manually", pos lo instalamos
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ npm install pg
+    npm WARN agenciaviajes@1.0.0 No repository field.
+    npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.3 (node_modules/fsevents):
+    npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+    + pg@8.4.2
+    added 19 packages from 11 contributors and audited 258 packages in 5.769s
+
+    15 packages are looking for funding
+    run `npm fund` for details
+
+    found 0 vulnerabilities
+
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push origin master 
+    Everything up-to-date
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git add .
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git commit -m "Se agrego "pg" a las dependencias de producccion"
+    [master 0f67f16] Se agrego pg a las dependencias de producccion
+    2 files changed, 134 insertions(+), 4 deletions(-)
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push origin master 
+    Counting objects: 4, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (4/4), done.
+    Writing objects: 100% (4/4), 2.54 KiB | 1.27 MiB/s, done.
+    Total 4 (delta 3), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+    ^[[ATo https://github.com/JulioDzalt/AgenciaViajes.git
+    50a0bc0..0f67f16  master -> master
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push production master
+    Counting objects: 4, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (4/4), done.
+    Writing objects: 100% (4/4), 2.54 KiB | 1.27 MiB/s, done.
+        
+#Y ya "fuciona, aunque hya un problema con Tstimoniales" :/ porpuesta: agregar un testimonial a mano
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku pg:psql postgresql-clear-07236 --app bloodcurdling-vampire-47944
+    --> Connecting to postgresql-clear-07236
+    psql (10.14 (Ubuntu 10.14-0ubuntu0.18.04.1), server 12.4 (Ubuntu 12.4-1.pgdg16.04+1))
+    WARNING: psql major version 10, server major version 12.
+            Some psql features might not work.
+    SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
+    Type "help" for help.
+
+    bloodcurdling-vampire-47944::DATABASE=> INSERT INTO Testimonios (id,nombre,email,comentarios) VALUES 
+    bloodcurdling-vampire-47944::DATABASE->         (1,'Julio','julio@julio.com','Muy bonito todo');
+    INSERT 0 1
+
+#Mirando los logs en heroku vi que decia que no existia la tbala "Testimonios"
+
+#Checamos las tablas que hay en el postgres de heroku 
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ heroku pg:psql postgresql-clear-07236 --app bloodcurdling-vampire-47944
+    --> Connecting to postgresql-clear-07236
+    psql (10.14 (Ubuntu 10.14-0ubuntu0.18.04.1), server 12.4 (Ubuntu 12.4-1.pgdg16.04+1))
+    WARNING: psql major version 10, server major version 12.
+            Some psql features might not work.
+    SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
+    Type "help" for help.
+
+    bloodcurdling-vampire-47944::DATABASE=> \t
+    Tuples only is on.
+    bloodcurdling-vampire-47944::DATABASE=> \c
+    psql (10.14 (Ubuntu 10.14-0ubuntu0.18.04.1), server 12.4 (Ubuntu 12.4-1.pgdg16.04+1))
+    WARNING: psql major version 10, server major version 12.
+            Some psql features might not work.
+    SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
+    You are now connected to database "delvmcvhsvlceo" as user "vsrahdflfhspcb".
+    bloodcurdling-vampire-47944::DATABASE=> \h
+    bloodcurdling-vampire-47944::DATABASE=> \dt
+    public | testimonios | table | vsrahdflfhspcb
+    public | viajes      | table | vsrahdflfhspcb
+
+    bloodcurdling-vampire-47944::DATABASE=> 
+
+
+#El error esta en el nombre de la tabla ESTA CON MINUSCULAS en heroku, entonces en "models/Testimonios.js" solo hya que cambiar a minuscula la "T", hacemos los cmabio y subimos 
+
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git add .
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git commit -m "Se cambio a minusculas el nombre en de la tabla Testimonios en models/Testimonios.js, porque postgresaql en heroku las guarda en minusculas las tablas"
+    [master 8e318f0] Se cambio a minusculas el nombre en de la tabla Testimonios en models/Testimonios.js, porque postgresaql en heroku las guarda en minusculas las tablas
+    2 files changed, 3 insertions(+), 2 deletions(-)
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push origin master 
+    Counting objects: 6, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (5/5), done.
+    Writing objects: 100% (6/6), 642 bytes | 642.00 KiB/s, done.
+    Total 6 (delta 3), reused 0 (delta 0)
+    remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+    To https://github.com/JulioDzalt/AgenciaViajes.git
+    0f67f16..8e318f0  master -> master
+    julio@julio-Lenovo-IdeaPad-S400:~/Escritorio/CURSOS/CursoJavaScriptUdemy/Curso JS Desarrollo/IntroNodeJsExpressSequelize/agenciaviajes$ git push production master
+    Counting objects: 6, done.
+    Delta compression using up to 4 threads.
+
+#Hay otro error, y es con el "id" de la tabla "testimonios", SOLUCION en postgres no existe autoincremnter, es serial, asi que hya que cmbair la tabla
+    #Borrramos la anteior y creamos la nueva, de una vez con minusculas xd
+    CREATE TABLE testimonios (
+            id serial NOT NULL PRIMARY KEY, 
+            nombre varchar(50) NOT NULL, 
+            email varchar(100) NOT NULL, 
+            comentarios text NOT NULL
+    );
+    INSERT INTO testimonios (nombre, email, comentarios)
+    VALUES ('terminal', 'terminal@gmail.com', 'Muy bueno todo');
+
+#PERFECTO ya ha quedado bien todo!! :D valio la pena
